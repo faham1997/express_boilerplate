@@ -7,7 +7,6 @@ import { Request, Response } from "express";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-import exampleRoute from "./routes/example.routes";
 import authRoute from "./routes/auth.routes.";
 
 const db = require("./config/db");
@@ -16,7 +15,6 @@ db();
 app.use(express.json());
 
 //Use Routes
-app.use("/api/v1/example", exampleRoute);
 app.use("/api/v1/auth", authRoute);
 
 app.get("/", (req: Request, res: Response) => {
