@@ -1,5 +1,10 @@
 import { Schema, model, Model } from "mongoose";
 
+export interface IHospital {
+  name: string;
+  location: string;
+}
+
 const hospitalSchema = new Schema<IHospital>({
   name: {
     type: String,
@@ -10,10 +15,5 @@ const hospitalSchema = new Schema<IHospital>({
     required: true,
   },
 });
-
-export interface IHospital {
-  name: string;
-  location: string;
-}
 
 export const Hospital: Model<IHospital> = model("Hospital", hospitalSchema);
