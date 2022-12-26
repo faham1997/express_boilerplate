@@ -29,7 +29,7 @@ const userSchema = new Schema<IUser>({
   },
   profession: {
     type: String,
-    enum: ["doctor", "patient"],
+    enum: ["doctor", "patient", "admin"],
     default: "patient",
   },
   password: {

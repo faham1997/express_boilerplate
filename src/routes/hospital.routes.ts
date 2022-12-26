@@ -7,10 +7,11 @@ import {
   updateHospitalDetails,
   getHospitals,
 } from "../controllers/hospital.controller";
+import { isAdmin, auth } from "../middlewares/roleChecker";
 
-router.post("/", createHospital);
+router.post("/", auth, isAdmin, createHospital);
 router.get("/get-hospitals", getHospitals);
-router.delete("/delete/:id", deleteHospital);
-router.put("/update/:id", updateHospitalDetails);
+router.delete("/delete/:id", auth, isAdmin, deleteHospital);
+router.put("/update/:id", auth, isAdmin, updateHospitalDetails);
 
 export default router;

@@ -18,11 +18,9 @@ const hospitalSchema = new Schema<IHospital>({
   },
   phone: {
     type: Number,
-    required: true,
   },
   website: {
     type: String,
-    required: true,
   },
 });
 
