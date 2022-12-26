@@ -1,11 +1,12 @@
 import { Schema, model, Model } from "mongoose";
 
 export interface IUser {
-  name: String;
-  age: Number;
-  email: String;
-  gender: String;
-  profession: String;
+  name: string;
+  age?: Number;
+  email: string;
+  gender: string;
+  profession?: string;
+  password: string;
 }
 
 const userSchema = new Schema<IUser>({
@@ -15,7 +16,6 @@ const userSchema = new Schema<IUser>({
   },
   age: {
     type: Number,
-    required: true,
   },
   email: {
     type: String,
@@ -28,6 +28,11 @@ const userSchema = new Schema<IUser>({
     default: "male",
   },
   profession: {
+    type: String,
+    enum: ["doctor", "patient"],
+    default: "patient",
+  },
+  password: {
     type: String,
     required: true,
   },
