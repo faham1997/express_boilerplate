@@ -19,7 +19,7 @@ export const register = async (req: Request, res: Response) => {
   const { name, email, password, gender, profession } = req.body;
 
   if (!name || !email || !password) {
-    return res.json({
+    return res.status(400).json({
       status: "error",
       error: "Please fill up all the required fields!",
     });
@@ -30,7 +30,7 @@ export const register = async (req: Request, res: Response) => {
       email: email,
     });
     if (oldUser) {
-      return res.json({
+      return res.status(400).json({
         status: "error",
         error: "User already exists with same email!",
       });
@@ -47,18 +47,18 @@ export const register = async (req: Request, res: Response) => {
     });
 
     if (!newUser) {
-      return res.json({
+      return res.status(400).json({
         status: "error",
         error: "Unable to create new user!",
       });
     } else {
-      return res.json({
+      return res.status(200).json({
         status: "ok",
         message: "User successfully created!",
       });
     }
   } catch (error) {
-    return res.json({
+    return res.status(400).json({
       status: "error",
       error: "Internal Server error!!",
     });
@@ -82,7 +82,7 @@ export const login = async (req: Request, res: Response) => {
     });
 
     if (!user) {
-      return res.json({
+      return res.status(400).json({
         status: "error",
         error: "The email is not registered!",
       });
@@ -92,20 +92,20 @@ export const login = async (req: Request, res: Response) => {
     if (checkPassword) {
       const token = createToken(user);
       if (token) {
-        return res.json({
+        return res.status(200).json({
           status: "ok",
           user: token,
           message: "Successfully logged in!!",
         });
       }
     } else {
-      return res.json({
+      return res.status(400).json({
         status: "error",
         error: "Wrong password entered",
       });
     }
   } catch (error) {
-    return res.json({
+    return res.status(400).json({
       status: "error",
       error: "Internal Server error",
     });
